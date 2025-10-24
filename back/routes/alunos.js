@@ -11,10 +11,18 @@ router.get('/', function(req, res, next) {
   res.send( { alunos });
 });
 
+/* GET alunos pelo ID API. */
+router.get('/:id', function(req, res, next) {
+  dados = req.params.id
+  console.log("veio", dados)
+  res.send( { alunos });
+});
+
 /* POST alunos API. */
 router.post('/', function(req, res, next) {
   dados = req.body
   console.log('veio', dados)
+  alunos.push(dados)
   res.send( { alunos });
 });
 
