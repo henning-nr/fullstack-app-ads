@@ -3,6 +3,7 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+require('dotenv').config()
 
 var app = express();
 app.use(express.json())
@@ -12,11 +13,13 @@ app.use(express.urlencoded({ extended: false }));
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var alunosRouter = require('./routes/alunos');
+var authRouter = require('./routes/auth')
 
 // USANDO ROTAS
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/alunos', alunosRouter);
+app.use('/auth', authRouter)
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
