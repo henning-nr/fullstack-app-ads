@@ -6,7 +6,8 @@ const router = express.Router()
 
 router.post('/register',(req, res)=>{
     const {username, password} = req.body
-
+    console.log('veio',username, password)
+    
     findUserByUsername(username, async (err, user)=>{
         if(err){
             return res.status(500).json({error: 'Erro no banco de dados'})
@@ -27,7 +28,8 @@ router.post('/register',(req, res)=>{
 // Login
 router.post('/login', (req, res) => {
   const { username, password } = req.body;
-
+  
+  
   findUserByUsername(username, async (err, user) => {
     if (err) return res.status(500).json({ error: 'Erro no banco de dados' });
     if (!user) return res.status(404).json({ message: 'Usuário não encontrado' });
