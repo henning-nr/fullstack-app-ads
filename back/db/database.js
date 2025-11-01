@@ -8,11 +8,23 @@ const db = new sqlite3.Database('./db/database.db', (err) => {
     }
 })
 
+console.log('Tabela users criada')
 db.run(`
         CREATE TABLE IF NOT EXISTS users (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             username TEXT UNIQUE,
             password TEXT
+        )
+`)
+
+console.log('Tabela students criada')
+db.run(`
+        CREATE TABLE IF NOT EXISTS students (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT,
+            gender TEXT,
+            age TEXT,
+            code TEXT
         )
 `)
 
