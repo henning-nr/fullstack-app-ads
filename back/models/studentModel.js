@@ -19,7 +19,7 @@ function createStudent(name, gender, age, code, callback){
     console.log('salvando no banco', name)
     
     // Verificar se já existe um estudante com o mesmo nome
-    db.get('SELECT * FROM students WHERE name = ?', [name], (err, existingStudent) => {
+    db.get('SELECT 1 FROM students WHERE name = ? LIMIT 1', [name], (err, existingStudent) => {
         if(err){
             console.error('Erro ao verificar duplicata:', err.message)
             return callback(err)
