@@ -51,6 +51,12 @@ router.post('/',authenticateToken, function(req, res, next) {
   createStudent(name, gender, age, code, (err, newStudent)=>{
     if(err){
       console.error('createStudent erro:', err.message)
+      
+      // Verificar se é erro de nome duplicado
+      if(err.code === 'DUPLICATE_NAME'){
+        return res.status(409).json({error: err.message})
+      }
+      
       return res.status(500).json({error: 'Erro ao salvar aluno'})
     }
 
